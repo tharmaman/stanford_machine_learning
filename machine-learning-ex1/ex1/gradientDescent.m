@@ -16,10 +16,21 @@ for iter = 1:num_iters
     % Hint: While debugging, it can be useful to print out the values
     %       of the cost function (computeCost) and gradient here.
     %
-
-
-
-
+    % X is a m x (n + 1) matrix
+    % theta is a (n + 1) x 1 matrix
+    % error is a m x 1 vector
+    error = X * theta - y;
+    
+    % error is a m x 1 vector
+    % X is a m x (n + 1) matrix
+    % (error' * X) is a 1 x (n + 1) row vector
+    % (error' * X)' is a (n + 1) x 1 column vector
+    delta = 1 / m * (error' * X)';
+    
+    % theta is a (n + 1) x 1 matrix
+    % alpha is a constant
+    % delta is a (n + 1) x 1 matrix
+    theta = theta - (alpha * delta);
 
 
 

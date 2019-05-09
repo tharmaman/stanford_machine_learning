@@ -36,14 +36,25 @@ grad = zeros(size(theta));
 %           grad = grad + YOUR_CODE_HERE (using the temp variable)
 %
 
+% Unregularized Logistic Regression
+% calculating the z
+z = sigmoid(X * theta);
 
+% calculating the cost function
+J = 1/m * sum((-1 * y' * log(z)) - ((1 - y')*log(1 - z)));
 
+% implementing gradient descent
+grad = 1/m * (X' * (z - y));
 
+% Regularized Logistic Regression
+% remember to ignore 0
+theta_adj = [0; theta(2:length(theta))];
 
+% calculating new adjusted j
+J = J + lambda/(2 * m) * sum(theta_adj .^ 2);
 
-
-
-
+% calculating the new adjusted gradient
+grad = grad + lambda/m  * theta_adj;
 
 % =============================================================
 
